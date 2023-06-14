@@ -59,7 +59,7 @@ $db_object = new database();
                                             echo "<td>" . $row['nama_sekolah'] . "</td>";
                                             echo "<td>" . $row['nilai_tes'] . "</td>";
                                             echo "<td>" . $row['hasil_uji'] . "</td>";
-                                        echo "</tr>";
+                                        echo "</tr>";   
                                         $no++;
                                     }
                                 ?>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.11
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 26, 2023 at 07:57 PM
--- Server version: 10.5.19-MariaDB-cll-lve
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1
+-- Generation Time: Jun 14, 2023 at 05:40 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,35 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `n1088742_canna`
+-- Database: `db_canna`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_hasil_klasifikasi`
---
-
-CREATE TABLE `data_hasil_klasifikasi` (
-  `id` int(11) NOT NULL,
-  `id_siswa` int(11) DEFAULT NULL,
-  `jenis_kelamin` enum('L','P') DEFAULT NULL,
-  `usia` int(11) DEFAULT NULL,
-  `sekolah` varchar(100) DEFAULT NULL,
-  `jawaban_a` int(11) DEFAULT NULL,
-  `jawaban_b` int(11) DEFAULT NULL,
-  `jawaban_c` int(11) DEFAULT NULL,
-  `jawaban_d` int(11) DEFAULT NULL,
-  `kelas_hasil` varchar(100) DEFAULT NULL,
-  `id_rule` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `data_hasil_klasifikasi`
---
-
-INSERT INTO `data_hasil_klasifikasi` (`id`, `id_siswa`, `jenis_kelamin`, `usia`, `sekolah`, `jawaban_a`, `jawaban_b`, `jawaban_c`, `jawaban_d`, `kelas_hasil`, `id_rule`) VALUES
-(1, 1, 'L', 15, 'Swasta', 4, 10, 5, 21, 'Plegmatis', 1);
 
 -- --------------------------------------------------------
 
@@ -60,31 +33,7 @@ CREATE TABLE `gain` (
   `node_id` int(11) DEFAULT NULL,
   `atribut` varchar(100) DEFAULT NULL,
   `gain` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rasio_gain`
---
-
-CREATE TABLE `rasio_gain` (
-  `id` int(11) NOT NULL,
-  `opsi` varchar(10) DEFAULT NULL,
-  `cabang1` varchar(50) DEFAULT NULL,
-  `cabang2` varchar(50) DEFAULT NULL,
-  `cabang3` varchar(50) NOT NULL,
-  `rasio_gain` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `rasio_gain`
---
-
-INSERT INTO `rasio_gain` (`id`, `opsi`, `cabang1`, `cabang2`, `cabang3`, `rasio_gain`) VALUES
-(1, 'opsi1', '14', '13 , 15', '', 0.574),
-(2, 'opsi2', '13', '15 , 14', '', 0.385),
-(3, 'opsi3', '15', '14 , 13', '', 0.574);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -119,17 +68,144 @@ CREATE TABLE `tb_klasifikasi` (
   `ips_grade` varchar(256) NOT NULL,
   `minat` varchar(255) NOT NULL,
   `nilai_tes` float NOT NULL,
+  `tes_grade` varchar(225) CHARACTER SET armscii8 NOT NULL,
   `hasil` varchar(256) NOT NULL,
   `hasil_uji` varchar(255) NOT NULL,
   `id_rule` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_klasifikasi`
 --
 
-INSERT INTO `tb_klasifikasi` (`id`, `nama_siswa`, `nama_sekolah`, `mtk_1`, `mtk_2`, `mtk_3`, `mtk_4`, `mtk_5`, `mtk_rata`, `mtk_grade`, `ipa_1`, `ipa_2`, `ipa_3`, `ipa_4`, `ipa_5`, `ipa_rata`, `ipa_grade`, `ips_1`, `ips_2`, `ips_3`, `ips_4`, `ips_5`, `ips_rata`, `ips_grade`, `minat`, `nilai_tes`, `hasil`, `hasil_uji`, `id_rule`) VALUES
-(5, 'andi', 'SMP 1 Ampana Kota', 80, 97, 87, 90, 98, 90.4, 'A', 90, 98, 97, 96, 98, 95.8, 'A', 98, 90, 97, 98, 96, 95.8, 'A', 'IPS', 95, 'IPA', 'IPA', 6);
+INSERT INTO `tb_klasifikasi` (`id`, `nama_siswa`, `nama_sekolah`, `mtk_1`, `mtk_2`, `mtk_3`, `mtk_4`, `mtk_5`, `mtk_rata`, `mtk_grade`, `ipa_1`, `ipa_2`, `ipa_3`, `ipa_4`, `ipa_5`, `ipa_rata`, `ipa_grade`, `ips_1`, `ips_2`, `ips_3`, `ips_4`, `ips_5`, `ips_rata`, `ips_grade`, `minat`, `nilai_tes`, `tes_grade`, `hasil`, `hasil_uji`, `id_rule`) VALUES
+(10, 'bambang', 'SMP N 2 Ampibabo', 87, 85, 83, 87, 85, 85.4, 'A', 89, 86, 78, 97, 78, 85.6, 'A', 87, 97, 78, 83, 85, 86, 'A', 'IPS', 89, 'A', 'IPA', 'IPA', 6),
+(11, 'aan irawan', 'SMP N 2 ampibabo', 79, 80, 88, 82, 81, 82, 'B', 79, 82, 84, 85, 86, 83.2, 'B', 80, 82, 87, 85, 86, 84, 'B', 'IPA', 82.6, 'B', 'IPS', 'IPS', 17),
+(12, 'Abd. Ihsan', 'SMP Negeri 1 Ampibabo', 77, 88, 90, 91, 92, 87.6, 'A', 80, 85, 90, 91, 91, 87.4, 'A', 79, 89, 90, 91, 92, 88.2, 'A', 'IPA', 89.4, 'A', 'IPA', 'IPA', 1),
+(13, 'moh.aidil', 'SMP N 1 Ampibabo', 89, 78, 89, 90, 91, 87.4, 'A', 98, 87, 86, 85, 86, 88.4, 'A', 97, 87, 89, 87, 96, 91.2, 'A', 'IPS', 86.5, 'A', 'IPA', 'IPA', 6),
+(14, 'akram', 'MtsN Ampibabo', 78, 98, 80, 78, 76, 82, 'B', 78, 76, 74, 77, 77, 76.4, 'B', 78, 90, 96, 94, 90, 89.6, 'A', 'IPS', 83.1, 'B', 'IPS', 'IPA', 8),
+(15, 'faqih fahri', 'SMP N 3 Ampibabo ', 90, 91, 97, 89, 90, 91.4, 'A', 89, 87, 90, 76, 78, 84, 'B', 89, 77, 90, 77, 78, 82.2, 'B', 'IPS', 85.2, 'A', 'IPA', 'IPA', 10),
+(16, 'andi faturrahman', 'SMP N 1 Toribulu', 83, 86, 77, 76, 77, 79.8, 'B', 87, 81, 80, 81, 82, 82.2, 'B', 75, 72, 74, 77, 74, 74.4, 'C', 'IPA', 80.2, 'B', 'IPS', 'IPS', 28),
+(17, 'farhan ramadhani', 'SMP N 1 Ampibabo', 78, 90, 84, 76, 71, 79.8, 'B', 77, 80, 84, 80, 81, 80.4, 'B', 78, 98, 80, 77, 89, 84.4, 'B', 'IPS', 81.2, 'B', 'IPS', 'IPS', 18),
+(18, 'fitrah andira', 'SMP N 3 Ampibabo', 77, 73, 71, 70, 72, 72.6, 'C', 74, 70, 70, 71, 71, 71.2, 'C', 75, 70, 73, 72, 70, 72, 'C', 'IPA', 74.2, 'C', 'IPS', 'IPS', 29),
+(19, 'abd. gafur', 'SMP N 1 Ampibabo', 80, 84, 83, 80, 81, 81.6, 'B', 80, 87, 90, 95, 98, 90, 'A', 70, 72, 71, 75, 70, 71.6, 'C', 'IPS', 85.6, 'A', 'IPS', 'IPS', 25),
+(20, 'sulpiadi', 'SMP N 1 Toribulu', 70, 77, 72, 71, 73, 72.6, 'C', 89, 98, 98, 93, 96, 94.8, 'A', 90, 92, 95, 97, 91, 93, 'A', 'IPS', 78.3, 'B', 'IPS', 'IPA', 6),
+(21, 'muhammad khiakal', 'SMP N 1 toribulu', 80, 86, 98, 97, 93, 90.8, 'A', 78, 90, 75, 70, 71, 76.8, 'B', 98, 95, 97, 90, 96, 95.2, 'A', 'IPA', 90.2, 'A', 'IPA', 'IPA', 8),
+(22, 'indahsari', 'SMP N 1 Toribulu', 80, 86, 95, 94, 90, 89, 'A', 93, 80, 78, 80, 90, 84.2, 'B', 89, 97, 93, 78, 96, 90.6, 'A', 'IPS', 89.4, 'A', 'IPA', 'IPA', 8),
+(23, 'Agus Pratama', 'SMP N 1 AMPIBABO', 90, 98, 78, 80, 98, 88.8, 'A', 78, 88, 89, 89, 90, 86.8, 'A', 80, 80, 85, 85, 85, 83, 'B', 'IPA', 98, 'A', 'IPA', 'IPA', 10),
+(24, 'Khaerul Anbiya', 'SMP N 1 SINIU', 88, 70, 90, 77, 70, 79, 'B', 78, 88, 89, 89, 88, 86.4, 'A', 80, 80, 80, 80, 80, 80, 'B', 'IPS', 89, 'A', 'IPS', 'IPA', 12),
+(25, 'Fahrul Ramadhan', 'SMP N 1 SINIU', 77, 75, 77, 80, 80, 77.8, 'B', 70, 70, 70, 70, 70, 70, 'C', 89, 89, 89, 89, 89, 89, 'A', 'IPS', 89, 'A', 'IPS', 'IPS', 9),
+(26, 'Ardiansyah', 'SMP N 1 SINIU', 77, 77, 77, 77, 77, 77, 'B', 78, 78, 78, 78, 78, 78, 'B', 98, 89, 89, 89, 89, 90.8, 'A', 'IPA', 79, 'B', 'IPS', 'IPA', 8),
+(27, 'MOH. RIDWAN', 'SMP n 1 Toribulu', 70, 78, 78, 78, 87, 78.2, 'B', 89, 89, 89, 98, 98, 92.6, 'A', 70, 70, 70, 98, 98, 81.2, 'B', 'IPS', 98, 'A', 'IPA', 'IPA', 12),
+(28, 'Mufair', 'Smp n 1 Toribulu', 70, 70, 70, 70, 70, 70, 'C', 98, 98, 98, 98, 98, 98, 'A', 80, 80, 80, 80, 80, 80, 'B', 'IPS', 80, 'B', 'IPS', 'IPS', 22),
+(29, 'Ramadan', 'Smp n 1 Toribulu', 70, 70, 70, 70, 70, 70, 'C', 98, 98, 98, 98, 98, 98, 'A', 98, 98, 98, 98, 98, 98, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(30, 'adnan', 'smp ampibabo', 78, 97, 90, 76, 80, 84.2, 'B', 89, 78, 76, 89, 90, 84.4, 'B', 98, 87, 76, 87, 89, 87.4, 'A', 'IPA', 89, 'A', 'IPA', 'IPA', 8),
+(31, 'Sandi', 'SMP N 1 Tojo', 78, 98, 89, 87, 68, 84, 'B', 90, 78, 97, 76, 65, 81.2, 'B', 68, 79, 98, 79, 79, 80.6, 'B', 'IPA', 98, 'A', 'IPA', 'IPS', 14),
+(32, 'M.Irpan', 'MTs Tatolisi', 89, 90, 75, 78, 78, 82, 'B', 98, 90, 80, 89, 67, 84.8, 'B', 98, 86, 76, 76, 75, 82.2, 'B', 'IPS', 78, 'B', 'IPS', 'IPS', 18),
+(33, 'Nurul fitri', 'SMP N 1 Toribulu', 98, 90, 87, 89, 79, 88.6, 'A', 90, 79, 70, 90, 89, 83.6, 'B', 78, 98, 98, 90, 98, 92.4, 'A', 'IPA', 89, 'A', 'IPA', 'IPA', 8),
+(34, 'nurrahma', 'SMP N 1 Toribulu', 90, 97, 69, 89, 80, 85, 'A', 80, 87, 89, 97, 69, 84.4, 'B', 80, 90, 97, 97, 99, 92.6, 'A', 'IPS', 87, 'A', 'IPA', 'IPA', 8),
+(35, 'evirahyani', 'SMP N 1 Ampana kota', 87, 89, 86, 65, 78, 81, 'B', 90, 87, 89, 90, 98, 90.8, 'A', 98, 90, 90, 97, 97, 94.4, 'A', 'IPS', 90, 'A', 'IPA', 'IPA', 6),
+(36, 'Fitrah andi M', 'SMP SATAP 1 Ampibabo', 98, 87, 79, 90, 90, 88.8, 'A', 90, 87, 99, 87, 89, 90.4, 'A', 78, 98, 79, 98, 98, 90.2, 'A', 'IPA', 98, 'A', 'IPA', 'IPA', 1),
+(37, 'Jumiaty', 'SMP N 1 Toribulu', 98, 79, 80, 97, 68, 84.4, 'B', 98, 69, 90, 98, 79, 86.8, 'A', 89, 90, 97, 86, 80, 88.4, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(38, 'ahmad salam', 'SMP SATAP 2 Ampibabo', 86, 89, 78, 98, 78, 85.8, 'A', 90, 98, 97, 87, 87, 91.8, 'A', 86, 87, 86, 78, 98, 87, 'A', 'IPS', 87, 'A', 'IPA', 'IPA', 6),
+(39, 'safira andira', 'SMP N 3 Ampibabo', 69, 89, 90, 98, 98, 88.8, 'A', 90, 78, 98, 88, 87, 88.2, 'A', 79, 90, 98, 79, 90, 87.2, 'A', 'IPS', 68, 'C', 'IPS', 'IPA', 6),
+(40, 'ramadhani irpan', 'SMP N 2 Ampibabo', 90, 90, 97, 90, 89, 91.2, 'A', 89, 90, 98, 98, 98, 94.6, 'A', 98, 90, 98, 98, 97, 96.2, 'A', 'IPS', 89, 'A', 'IPA', 'IPA', 6),
+(41, 'nadia sari', 'SMP N 1 Ampiababo', 88, 88, 89, 98, 98, 92.2, 'A', 89, 90, 98, 98, 89, 92.8, 'A', 79, 89, 98, 90, 97, 90.6, 'A', 'IPS', 87, 'A', 'IPA', 'IPA', 6),
+(42, 'A. Mahatir', 'SMP N 1 Ampibabo', 89, 78, 70, 76, 78, 78.2, 'B', 78, 67, 78, 65, 78, 73.2, 'C', 69, 89, 78, 76, 77, 77.8, 'B', 'IPA', 76, 'B', 'IPS', 'IPS', 21),
+(43, 'Rivan A.', 'SMP N 1 Ampibabo', 90, 90, 97, 97, 98, 94.4, 'A', 89, 98, 99, 90, 98, 94.8, 'A', 89, 90, 90, 87, 98, 90.8, 'A', 'IPS', 90, 'A', 'IPA', 'IPA', 6),
+(44, 'Ivan Pratama', 'SMP N 1 Ampiababi', 70, 68, 70, 67, 70, 69, 'C', 78, 76, 70, 75, 70, 73.8, 'C', 76, 78, 75, 73, 71, 74.6, 'C', 'IPA', 78, 'B', 'IPS', 'IPS', 28),
+(45, 'Atala', 'SMP N 2 Ampibabo', 70, 79, 69, 78, 77, 74.6, 'C', 76, 74, 70, 67, 68, 71, 'C', 80, 77, 80, 88, 78, 80.6, 'B', 'IPA', 85, 'A', 'IPS', 'IPS', 22),
+(46, 'Rifial', 'SMPN 1 Ampibabo', 78, 80, 84, 82, 83, 81.4, 'B', 78, 80, 77, 86, 80, 80.2, 'B', 80, 85, 87, 88, 85, 85, 'A', 'IPS', 80, 'B', 'IPS', 'IPA', 8),
+(47, 'Rani', 'SMPN 1 Ampibabo`', 80, 78, 80, 83, 88, 81.8, 'B', 80, 82, 82, 80, 85, 81.8, 'B', 90, 88, 80, 85, 85, 85.6, 'A', 'IPA', 89, 'A', 'IPS', 'IPA', 8),
+(48, 'Arjun', 'SMPN 1 Palu', 80, 75, 79, 80, 82, 79.2, 'B', 78, 77, 80, 79, 82, 79.2, 'B', 80, 85, 84, 89, 82, 84, 'B', 'IPS', 85, 'A', 'IPS', 'IPA', 15),
+(49, 'Rahmat', 'SMPN 1 Donggala', 82, 80, 84, 80, 85, 82.2, 'B', 78, 80, 77, 78, 80, 78.6, 'B', 86, 88, 80, 85, 85, 84.8, 'B', 'IPS', 90, 'A', 'IPS', 'IPA', 15),
+(50, 'Moh. Safar', 'SMPN 2 Palu', 80, 85, 78, 80, 82, 81, 'B', 70, 78, 80, 80, 83, 78.2, 'B', 80, 88, 84, 80, 83, 83, 'B', 'IPA', 89, 'A', 'IPS', 'IPS', 14),
+(51, 'andi reza A.', 'SMP N 1 Ampibabo', 75, 75, 72, 71, 69, 72.4, 'C', 98, 78, 75, 74, 70, 79, 'B', 71, 67, 70, 84, 68, 72, 'C', 'IPA', 89, 'A', 'IPS', 'IPS', 27),
+(52, 'Fahri A. Natim', 'SMP N 3 Ampibabo', 98, 76, 67, 98, 86, 85, 'A', 76, 68, 69, 96, 94, 80.6, 'B', 78, 79, 70, 86, 81, 78.8, 'B', 'IPA', 84, 'B', 'IPS', 'IPA', 10),
+(53, 'Martin M.', 'SMP N Satap 2 Ampibabo', 86, 68, 70, 86, 73, 76.6, 'B', 89, 87, 95, 75, 80, 85.2, 'A', 68, 69, 78, 69, 70, 70.8, 'C', 'IPS', 87, 'A', 'IPS', 'IPS', 25),
+(54, 'Randi amriadi', 'SMP N 2 Ampibabo', 78, 89, 87, 97, 97, 89.6, 'A', 87, 98, 76, 88, 87, 87.2, 'A', 86, 78, 89, 77, 87, 83.4, 'B', 'IPS', 86, 'A', 'IPA', 'IPA', 10),
+(55, 'Rifkiawan', 'SMP N 3 Ampibabo', 76, 85, 83, 80, 69, 78.6, 'B', 97, 78, 69, 79, 68, 78.2, 'B', 72, 82, 68, 69, 67, 71.6, 'C', 'IPA', 72, 'C', 'IPS', 'IPS', 29),
+(56, 'Riski Saputra', 'SMP N 3 Ampibabo', 68, 89, 79, 80, 87, 80.6, 'B', 98, 87, 78, 79, 76, 83.6, 'B', 78, 71, 70, 76, 68, 72.6, 'C', 'IPA', 76, 'B', 'IPS', 'IPS', 28),
+(57, 'Ramla', 'SMP N 1 Toribulu', 89, 76, 89, 70, 80, 80.8, 'B', 87, 76, 68, 78, 76, 77, 'B', 76, 80, 90, 87, 87, 84, 'B', 'IPA', 78, 'B', 'IPS', 'IPS', 17),
+(58, 'Ahmad Rifai', 'SMP Satap 1 Ampibabo', 87, 67, 79, 69, 90, 78.4, 'B', 77, 98, 75, 78, 86, 82.8, 'B', 79, 68, 99, 89, 79, 82.8, 'B', 'IPS', 79, 'B', 'IPS', 'IPS', 18),
+(59, 'hijriah', 'SMP N 2 Ampibabo', 79, 98, 98, 90, 88, 90.6, 'A', 98, 80, 97, 79, 98, 90.4, 'A', 79, 98, 90, 90, 87, 88.8, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(60, 'audy ruslan', 'SMP N 2 Ampibabo', 79, 90, 90, 97, 89, 89, 'A', 79, 89, 90, 78, 98, 86.8, 'A', 80, 87, 94, 95, 97, 90.6, 'A', 'IPS', 89, 'A', 'IPA', 'IPA', 6),
+(61, 'megawati', 'SMP N 2 Ampibabo', 68, 98, 908, 87, 68, 245.8, 'A', 89, 90, 97, 74, 96, 89.2, 'A', 98, 98, 87, 78, 89, 90, 'A', 'IPS', 78, 'B', 'IPA', 'IPA', 6),
+(62, 'ananda ayu', 'SMP N 3 Ampibabo', 76, 87, 68, 87, 68, 77.2, 'B', 89, 79, 97, 97, 76, 87.6, 'A', 87, 87, 87, 68, 80, 81.8, 'B', 'IPS', 89, 'A', 'IPS', 'IPA', 12),
+(63, 'ayu safira', 'SMP N 2 Ampibabo', 79, 90, 87, 89, 98, 88.6, 'A', 98, 89, 80, 89, 90, 89.2, 'A', 79, 78, 90, 80, 89, 83.2, 'B', 'IPA', 98, 'A', 'IPA', 'IPA', 10),
+(64, 'Heni', 'SMP N 3 Ampibabo', 79, 79, 79, 86, 90, 82.6, 'B', 98, 79, 69, 98, 79, 84.6, 'B', 87, 90, 70, 90, 98, 87, 'A', 'IPA', 98, 'A', 'IPA', 'IPA', 8),
+(65, 'serly', 'SMP N 3 Ampibabo', 89, 97, 99, 97, 78, 92, 'A', 90, 79, 97, 96, 96, 91.6, 'A', 68, 98, 90, 97, 75, 85.6, 'A', 'IPS', 78, 'B', 'IPA', 'IPA', 6),
+(66, 'widad zahira', 'SMP N 1 Ampibabo', 87, 97, 69, 98, 96, 89.4, 'A', 89, 98, 79, 89, 79, 86.8, 'A', 87, 98, 80, 97, 96, 91.6, 'A', 'IPS', 89, 'A', 'IPA', 'IPA', 6),
+(67, 'nurraini', 'MTsN Ampibabo', 98, 98, 90, 70, 80, 87.2, 'A', 98, 97, 78, 89, 79, 88.2, 'A', 70, 80, 80, 89, 90, 81.8, 'B', 'IPA', 87, 'A', 'IPA', 'IPA', 10),
+(68, 'kikan yunita', 'SMP N 2 Ampibabo', 88, 98, 98, 96, 68, 89.6, 'A', 98, 79, 90, 87, 98, 90.4, 'A', 98, 98, 86, 97, 96, 95, 'A', 'IPS', 97, 'A', 'IPA', 'IPA', 6),
+(69, 'gugun ramadhan', 'SMP N 1 Ampibabo', 87, 87, 67, 68, 87, 79.2, 'B', 98, 86, 85, 87, 86, 88.4, 'A', 65, 87, 98, 96, 87, 86.6, 'A', 'IPA', 87, 'A', 'IPA', 'IPA', 4),
+(70, 'santi', 'SMP N 1 Ampibabo', 98, 96, 89, 87, 87, 91.4, 'A', 88, 98, 97, 86, 97, 93.2, 'A', 77, 76, 84, 87, 74, 79.6, 'B', 'IPS', 74, 'C', 'IPS', 'IPA', 10),
+(71, 'Fadlun', 'SMP N 1 Ampibabo', 68, 98, 87, 74, 86, 82.6, 'B', 78, 98, 68, 98, 86, 85.6, 'A', 75, 85, 79, 98, 85, 84.4, 'B', 'IPA', 79, 'B', 'IPS', 'IPS', 11),
+(72, 'Juansen', 'SMP Satap 2 ampibabo', 77, 78, 78, 87, 68, 77.6, 'B', 89, 67, 98, 97, 86, 87.4, 'A', 78, 68, 89, 79, 96, 82, 'B', 'IPA', 67, 'C', 'IPS', 'IPS', 11),
+(73, 'gufran M.', 'SMP N 3 Ampibabo', 85, 86, 87, 87, 98, 88.6, 'A', 87, 67, 87, 79, 86, 81.2, 'B', 98, 78, 96, 98, 87, 91.4, 'A', 'IPA', 76, 'B', 'IPS', 'IPA', 8),
+(74, 'Hamada', 'MTsN Ampibabo', 87, 86, 68, 97, 97, 87, 'A', 98, 86, 98, 87, 78, 89.4, 'A', 87, 87, 99, 87, 86, 89.2, 'A', 'IPA', 86, 'A', 'IPA', 'IPA', 1),
+(75, 'indriani', 'SMP N 3 Ampibabo', 97, 98, 97, 96, 95, 96.6, 'A', 98, 79, 97, 97, 89, 92, 'A', 96, 83, 73, 97, 68, 83.4, 'B', 'IPA', 79, 'B', 'IPA', 'IPA', 10),
+(76, 'Santoso', 'MTsN Ampibabo', 68, 89, 86, 98, 98, 87.8, 'A', 98, 69, 98, 80, 78, 84.6, 'B', 78, 68, 98, 98, 86, 85.6, 'A', 'IPS', 79, 'B', 'IPS', 'IPA', 8),
+(77, 'Andri', 'MTsN Ampibabo', 75, 87, 68, 88, 98, 83.2, 'B', 98, 79, 86, 97, 68, 85.6, 'A', 86, 98, 86, 86, 98, 90.8, 'A', 'IPS', 97, 'A', 'IPA', 'IPA', 6),
+(78, 'Dzawinnur', 'MTsN Ampibabo', 85, 75, 75, 87, 68, 78, 'B', 87, 87, 98, 87, 87, 89.2, 'A', 87, 68, 87, 68, 85, 79, 'B', 'IPA', 68, 'C', 'IPS', 'IPS', 11),
+(79, 'Zahira', 'SMP Satap 2 Ampibabo', 78, 98, 86, 76, 77, 83, 'B', 86, 75, 67, 76, 75, 75.8, 'B', 78, 86, 78, 76, 76, 78.8, 'B', 'IPA', 87, 'A', 'IPS', 'IPS', 14),
+(80, 'syil safira', 'MTsN Ampibabo', 86, 85, 81, 85, 75, 82.4, 'B', 89, 98, 98, 87, 86, 91.6, 'A', 75, 85, 76, 75, 85, 79.2, 'B', 'IPA', 68, 'C', 'IPS', 'IPS', 11),
+(81, 'Fiersa', 'SMP N 2 Ampibabo', 68, 85, 86, 85, 79, 80.6, 'B', 78, 97, 67, 78, 86, 81.2, 'B', 97, 75, 68, 86, 75, 80.2, 'B', 'IPA', 75, 'B', 'IPS', 'IPS', 17),
+(82, 'Agaf ramadhan', 'SMP Satap 1 Ampibabo', 86, 87, 68, 85, 86, 82.4, 'B', 78, 87, 97, 86, 78, 85.2, 'A', 86, 87, 85, 87, 87, 86.4, 'A', 'IPA', 86, 'A', 'IPA', 'IPA', 4),
+(83, 'Paseo', 'SMP N 3 Ampibabo', 68, 87, 86, 87, 86, 82.8, 'B', 87, 68, 78, 97, 69, 79.8, 'B', 86, 87, 68, 86, 87, 82.8, 'B', 'IPS', 86, 'A', 'IPS', 'IPA', 15),
+(84, 'Pajri', 'MTsN Ampibabo', 86, 87, 86, 79, 86, 84.8, 'B', 78, 86, 86, 78, 98, 85.2, 'A', 69, 87, 87, 76, 68, 77.4, 'B', 'IPS', 68, 'C', 'IPS', 'IPA', 12),
+(85, 'nur afandi', 'SMP N 3 Ampibabo', 89, 98, 98, 97, 97, 95.8, 'A', 98, 78, 98, 97, 69, 88, 'A', 69, 98, 98, 98, 98, 92.2, 'A', 'IPA', 97, 'A', 'IPA', 'IPA', 1),
+(86, 'Gazali', 'SMP N 1 Ampibabo', 96, 89, 96, 97, 97, 95, 'A', 90, 98, 96, 96, 97, 95.4, 'A', 97, 98, 95, 97, 97, 96.8, 'A', 'IPA', 93, 'A', 'IPA', 'IPA', 1),
+(87, 'Asmaniar', 'SMP N 3 Ampibabo', 79, 98, 97, 89, 79, 88.4, 'A', 88, 89, 79, 98, 98, 90.4, 'A', 97, 79, 89, 97, 97, 91.8, 'A', 'IPA', 89, 'A', 'IPA', 'IPA', 1),
+(88, 'Bersari F.', 'SMP N 2 Ampibabo', 87, 87, 98, 79, 70, 84.2, 'B', 98, 87, 76, 97, 97, 91, 'A', 98, 98, 87, 98, 86, 93.4, 'A', 'IPS', 89, 'A', 'IPA', 'IPA', 6),
+(89, 'Priadi', 'MTsN Ampibabo', 94, 96, 97, 91, 92, 94, 'A', 87, 87, 89, 99, 79, 88.2, 'A', 83, 93, 91, 95, 97, 91.8, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(90, 'Salpriadi', 'MTsN Ampibabo', 79, 98, 79, 79, 78, 82.6, 'B', 98, 96, 98, 79, 98, 93.8, 'A', 89, 98, 79, 98, 98, 92.4, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(91, 'fatwati nur', 'MTsN Ampibabo', 97, 89, 87, 86, 87, 89.2, 'A', 98, 97, 86, 87, 89, 91.4, 'A', 89, 87, 86, 89, 85, 87.2, 'A', 'IPA', 87, 'A', 'IPA', 'IPA', 1),
+(92, 'Pajero', 'MTsN Ampibabo', 89, 79, 60, 89, 98, 83, 'B', 98, 79, 80, 97, 98, 90.4, 'A', 97, 98, 90, 79, 98, 92.4, 'A', 'IPA', 89, 'A', 'IPA', 'IPA', 4),
+(93, 'Bagus Pramata', 'MTsN Ampibabo', 87, 98, 86, 88, 87, 89.2, 'A', 87, 86, 98, 77, 87, 87, 'A', 98, 97, 69, 98, 98, 92, 'A', 'IPS', 96, 'A', 'IPA', 'IPA', 6),
+(94, 'Maulana', 'MTsN Ampibabo', 97, 98, 98, 95, 90, 95.6, 'A', 98, 97, 97, 98, 97, 97.4, 'A', 96, 97, 89, 97, 96, 95, 'A', 'IPS', 96, 'A', 'IPA', 'IPA', 6),
+(95, 'Rasyid R. Safira', 'MTsN Ampibabo', 94, 93, 94, 39, 95, 83, 'B', 98, 97, 69, 96, 97, 91.4, 'A', 95, 94, 93, 90, 97, 93.8, 'A', 'IPA', 79, 'B', 'IPA', 'IPA', 4),
+(96, 'Sandi Rasyid T.', 'SMP N 3 Ampibabo', 90, 99, 97, 92, 90, 93.6, 'A', 97, 98, 97, 92, 91, 95, 'A', 79, 90, 90, 88, 90, 87.4, 'A', 'IPS', 97, 'A', 'IPA', 'IPA', 6),
+(97, 'Andira Fitrah P.', 'SMP Satap 2 Ampibabo', 95, 96, 98, 69, 87, 89, 'A', 90, 98, 79, 96, 95, 91.6, 'A', 96, 69, 97, 79, 96, 87.4, 'A', 'IPA', 69, 'C', 'IPS', 'IPA', 3),
+(98, 'Ramdhani G. nadira', 'SMP N 2 Ampibabo', 98, 97, 96, 98, 96, 97, 'A', 98, 87, 89, 89, 89, 90.4, 'A', 98, 96, 79, 97, 98, 93.6, 'A', 'IPA', 97, 'A', 'IPA', 'IPA', 1),
+(99, 'A. Fitaratna', 'SMP Satap 1 Ampibabo', 97, 96, 97, 94, 86, 94, 'A', 97, 86, 85, 89, 98, 91, 'A', 75, 87, 86, 85, 89, 84.4, 'B', 'IPS', 86, 'A', 'IPA', 'IPA', 10),
+(100, 'Jenie', 'SMP N 2 Ampibabo', 96, 98, 97, 89, 90, 94, 'A', 98, 69, 59, 97, 97, 84, 'B', 88, 87, 97, 90, 79, 88.2, 'A', 'IPA', 98, 'A', 'IPA', 'IPA', 8),
+(101, 'niluh indasari', 'SMP N 1 Ampibabo', 78, 88, 88, 98, 98, 90, 'A', 78, 98, 98, 97, 98, 93.8, 'A', 98, 98, 98, 78, 98, 94, 'A', 'IPS', 87, 'A', 'IPA', 'IPA', 6),
+(102, 'arman maulana', 'SMP N 1 Ampibabo', 98, 89, 97, 97, 97, 95.6, 'A', 87, 68, 89, 78, 86, 81.6, 'B', 98, 97, 68, 99, 98, 92, 'A', 'IPA', 97, 'A', 'IPA', 'IPA', 8),
+(103, 'fadiljaidi', 'SMP N 1 Ampibabo', 87, 98, 87, 68, 98, 87.6, 'A', 78, 97, 98, 86, 87, 89.2, 'A', 97, 98, 97, 89, 98, 95.8, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(104, 'maman ardiansyah', 'MTsN Ampibabo', 96, 97, 98, 97, 96, 96.8, 'A', 78, 98, 90, 96, 98, 92, 'A', 97, 98, 99, 98, 98, 98, 'A', 'IPS', 90, 'A', 'IPA', 'IPA', 6),
+(105, 'mulyani R.', 'MTsN Ampibabo', 97, 98, 98, 97, 87, 95.4, 'A', 87, 99, 98, 97, 98, 95.8, 'A', 89, 87, 86, 89, 89, 88, 'A', 'IPA', 86, 'A', 'IPA', 'IPA', 1),
+(106, 'andi M. Baskara', 'SMP N 1 Ampibabo', 68, 98, 87, 89, 98, 88, 'A', 87, 86, 89, 89, 87, 87.6, 'A', 97, 98, 86, 78, 98, 91.4, 'A', 'IPA', 87, 'A', 'IPA', 'IPA', 1),
+(107, 'wicaksana A. mutadir', 'MTsN Ampibabo', 78, 68, 98, 68, 80, 78.4, 'B', 97, 97, 98, 90, 70, 90.4, 'A', 89, 87, 86, 89, 97, 89.6, 'A', 'IPS', 79, 'B', 'IPS', 'IPA', 6),
+(108, 'Haijul Pratama', 'MTsN', 98, 97, 98, 79, 98, 94, 'A', 89, 79, 96, 98, 96, 91.6, 'A', 79, 98, 98, 97, 98, 94, 'A', 'IPA', 97, 'A', 'IPA', 'IPA', 1),
+(109, 'Moh. Nur', 'MTsN Ampibabo', 97, 97, 98, 98, 79, 93.8, 'A', 98, 98, 88, 97, 98, 95.8, 'A', 98, 97, 98, 90, 89, 94.4, 'A', 'IPS', 98, 'A', 'IPA', 'IPA', 6),
+(110, 'Handri P. Madi', 'MTsN Ampibabo', 76, 86, 86, 75, 76, 79.8, 'B', 98, 97, 96, 97, 776, 232.8, 'A', 76, 78, 87, 79, 86, 81.2, 'B', 'IPS', 89, 'A', 'IPA', 'IPA', 12),
+(111, 'fadjri', 'MTsN Ampibabo', 87, 87, 86, 88, 89, 87.4, 'A', 87, 99, 87, 67, 87, 85.4, 'A', 78, 97, 97, 98, 98, 93.6, 'A', 'IPA', 89, 'A', 'IPA', 'IPA', 1),
+(112, 'Endayah', 'MTsN Ampibabo', 69, 96, 86, 96, 89, 87.2, 'A', 97, 79, 98, 70, 96, 88, 'A', 68, 68, 86, 87, 87, 79.2, 'B', 'IPA', 68, 'C', 'IPS', 'IPA', 10),
+(113, 'Hajriah M. Kadir', 'MTsN Ampibabo', 89, 98, 97, 96, 97, 95.4, 'A', 98, 97, 97, 89, 97, 95.6, 'A', 99, 89, 99, 96, 99, 96.4, 'A', 'IPA', 97, 'A', 'IPA', 'IPA', 1),
+(114, 'Hansen ', 'SMP N 1 Ampibabo', 69, 98, 98, 78, 98, 88.2, 'A', 87, 98, 89, 86, 98, 91.6, 'A', 87, 98, 87, 87, 98, 91.4, 'A', 'IPA', 79, 'B', 'IPA', 'IPA', 2),
+(115, 'Hindia', 'SMP N 1 Ampibabo', 78, 68, 60, 69, 69, 68.8, 'C', 68, 69, 96, 69, 60, 72.4, 'C', 68, 88, 68, 67, 69, 72, 'C', 'IPS', 90, 'A', 'IPS', 'IPS', 27),
+(116, 'Banda Neira', 'SMP N 1 Ampibabo', 97, 68, 68, 69, 79, 76.2, 'B', 98, 97, 89, 97, 98, 95.8, 'A', 68, 67, 69, 60, 79, 68.6, 'C', 'IPS', 79, 'B', 'IPS', 'IPS', 28),
+(117, 'Juriah M. ahlan', 'SMP N 2 Ampibao', 67, 87, 77, 76, 67, 74.8, 'C', 98, 86, 67, 69, 69, 77.8, 'B', 67, 76, 76, 78, 76, 74.6, 'C', 'IPS', 88, 'A', 'IPS', 'IPS', 27),
+(118, 'Taslima', 'SMP N 3 Ampibabo', 67, 66, 77, 72, 67, 69.8, 'C', 98, 86, 98, 87, 65, 86.8, 'A', 69, 74, 77, 76, 76, 74.4, 'C', 'IPS', 70, 'C', 'IPS', 'IPS', 29),
+(119, 'Hendra ', 'SMP N 2 Ampibabo', 78, 78, 79, 67, 97, 79.8, 'B', 98, 77, 78, 65, 76, 78.8, 'B', 78, 87, 86, 89, 89, 85.8, 'A', 'IPA', 79, 'B', 'IPS', 'IPA', 8),
+(120, 'Gani Rahma', 'SMP N 1 Ampibabo', 79, 88, 89, 89, 87, 86.4, 'A', 98, 97, 98, 79, 97, 93.8, 'A', 97, 87, 87, 87, 98, 91.2, 'A', 'IPA', 98, 'A', 'IPA', 'IPA', 1),
+(121, 'Moh. Guntur', 'SMP N 3 Ampibabo', 96, 98, 97, 80, 80, 90.2, 'A', 98, 68, 80, 89, 97, 86.4, 'A', 89, 79, 98, 97, 96, 91.8, 'A', 'IPS', 79, 'B', 'IPA', 'IPA', 6),
+(122, 'Canna', 'SMP N Ampibabo', 76, 76, 67, 79, 76, 74.8, 'C', 69, 77, 73, 60, 65, 68.8, 'C', 76, 67, 68, 67, 68, 69.2, 'C', 'IPA', 87, 'A', 'IPS', 'IPS', 27),
+(123, 'Ganesha ', 'SMP N 2 Ampibabo', 67, 78, 76, 76, 98, 79, 'B', 97, 77, 67, 69, 66, 75.2, 'B', 89, 89, 79, 69, 77, 80.6, 'B', 'IPS', 97, 'A', 'IPS', 'IPA', 15),
+(124, 'Seven eleven', 'SMP Ampibabo', 78, 89, 97, 87, 87, 87.6, 'A', 87, 87, 87, 98, 97, 91.2, 'A', 98, 97, 98, 97, 88, 95.6, 'A', 'IPS', 97, 'A', 'IPA', 'IPA', 6),
+(125, 'Komang darta yelbi', 'SMP N 1 Ampibabo', 98, 95, 94, 96, 93, 95.2, 'A', 98, 98, 97, 96, 98, 97.4, 'A', 96, 92, 95, 94, 93, 94, 'A', 'IPS', 96, 'A', 'IPA', 'IPA', 6),
+(126, 'AGRI', 'SMP N 1 Ampibabo', 97, 78, 86, 89, 79, 85.8, 'A', 89, 97, 97, 89, 97, 93.8, 'A', 68, 89, 97, 86, 86, 85.2, 'A', 'IPA', 86, 'A', 'IPA', 'IPA', 1),
+(127, 'Gandri Ardiansyah', 'SMP N 1 Ampibabo', 86, 68, 79, 72, 71, 75.2, 'B', 67, 77, 69, 69, 66, 69.6, 'C', 67, 74, 71, 69, 72, 70.6, 'C', 'IPS', 82, 'B', 'IPS', 'IPS', 28),
+(128, 'Ardiansyah', 'MTsN Ampibabo', 71, 70, 68, 65, 67, 68.2, 'C', 76, 77, 71, 68, 69, 72.2, 'C', 77, 72, 70, 76, 75, 74, 'C', 'IPS', 87, 'A', 'IPS', 'IPS', 27),
+(129, 'Niluh Imandani', 'SMP N 1 Ampibao', 74, 89, 74, 70, 69, 75.2, 'B', 65, 66, 77, 71, 72, 70.2, 'C', 76, 78, 70, 71, 77, 74.4, 'C', 'IPS', 78, 'B', 'IPS', 'IPS', 28),
+(130, 'Mansyar', 'SMP N 1 Ampibabo', 83, 74, 71, 67, 88, 76.6, 'B', 65, 67, 77, 70, 72, 70.2, 'C', 67, 88, 77, 71, 70, 74.6, 'C', 'IPA', 87, 'A', 'IPS', 'IPA', 24),
+(131, 'Lalisa', 'SMP N 3 Ampibabo', 77, 71, 70, 71, 73, 72.4, 'C', 87, 86, 87, 86, 67, 82.6, 'B', 73, 74, 75, 79, 66, 73.4, 'C', 'IPS', 85, 'A', 'IPS', 'IPS', 27),
+(132, 'Pratiwi', 'MTsN Ampibabo', 87, 65, 66, 67, 77, 72.4, 'C', 68, 77, 89, 97, 95, 85.2, 'A', 87, 97, 98, 97, 98, 95.4, 'A', 'IPA', 96, 'A', 'IPA', 'IPA', 5),
+(133, 'Muh. Faried H.', 'SMP N 2 Mamuju', 97, 97, 90, 89, 97, 94, 'A', 89, 97, 98, 96, 97, 95.4, 'A', 86, 87, 98, 97, 98, 93.2, 'A', 'IPS', 99, 'A', 'IPA', 'IPA', 6),
+(134, 'Hasibuan', 'SMP N 1 Ampibabo', 80, 98, 90, 97, 98, 92.6, 'A', 98, 97, 96, 97, 90, 95.6, 'A', 90, 97, 98, 79, 87, 90.2, 'A', 'IPS', 86, 'A', 'IPA', 'IPA', 6),
+(135, 'Hasbi', 'MTs Alkhairat Siniu', 96, 79, 96, 78, 86, 87, 'A', 98, 98, 98, 97, 96, 97.4, 'A', 75, 86, 86, 87, 87, 84.2, 'B', 'IPS', 78, 'B', 'IPA', 'IPA', 10),
+(136, 'Fadli Nur', 'SMP N 1 Ampibabo', 68, 87, 75, 68, 66, 72.8, 'C', 87, 87, 86, 85, 68, 82.6, 'B', 68, 67, 69, 97, 67, 73.6, 'C', 'IPA', 67, 'C', 'IPS', 'IPS', 29);
 
 -- --------------------------------------------------------
 
@@ -165,7 +241,7 @@ CREATE TABLE `tb_training` (
   `minat` varchar(255) NOT NULL,
   `nilai_tes` float NOT NULL,
   `hasil` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_training`
@@ -712,7 +788,7 @@ CREATE TABLE `tb_training2` (
   `ips_grade` varchar(256) NOT NULL,
   `nilai_tes` varchar(256) NOT NULL,
   `hasil` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_training2`
@@ -1248,56 +1324,6 @@ INSERT INTO `tb_training2` (`id`, `nama_siswa`, `minat`, `ipa_grade`, `mtk_grade
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_uji2`
---
-
-CREATE TABLE `tb_uji2` (
-  `id` int(11) NOT NULL,
-  `nama_siswa` varchar(255) NOT NULL,
-  `minat` varchar(255) NOT NULL,
-  `ipa_grade` varchar(256) NOT NULL,
-  `mtk_grade` varchar(256) NOT NULL,
-  `ips_grade` varchar(256) NOT NULL,
-  `nilai_tes` varchar(256) NOT NULL,
-  `hasil` varchar(256) NOT NULL,
-  `hasil_uji` varchar(256) NOT NULL,
-  `id_rule` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_uji2`
---
-
-INSERT INTO `tb_uji2` (`id`, `nama_siswa`, `minat`, `ipa_grade`, `mtk_grade`, `ips_grade`, `nilai_tes`, `hasil`, `hasil_uji`, `id_rule`) VALUES
-(1, 'Usria', 'IPS', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 6),
-(2, 'Usril', 'IPS', 'B', 'B', 'B', 'A', 'IPA', 'IPA', 15),
-(3, 'Valentino', 'IPA', 'A', 'B', 'A', 'A', 'IPA', 'IPA', 4),
-(4, 'Vebry Andi Abbas', 'IPS', 'A', 'A', 'B', 'A', 'IPA', 'IPA', 10),
-(5, 'Vivin', 'IPS', 'B', 'A', 'B', 'B', 'IPA', 'IPA', 10),
-(6, 'Wahyu Ajib', 'IPS', 'B', 'B', 'B', 'B', 'IPS', 'IPS', 18),
-(7, 'Wahyu Gunawan', 'IPA', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 1),
-(8, 'Wahyu Widodo', 'IPA', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 1),
-(9, 'Wahyuli', 'IPS', 'B', 'A', 'A', 'A', 'IPA', 'IPA', 8),
-(10, 'Walza', 'IPS', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 6),
-(11, 'Wardiasyah', 'IPS', 'C', 'B', 'B', 'B', 'IPS', 'IPS', 21),
-(12, 'Windi', 'IPA', 'B', 'B', 'B', 'A', 'IPA', 'IPS', 14),
-(13, 'Yasni', 'IPA', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 1),
-(14, 'Yola Puspitasari', 'IPA', 'A', 'A', 'A', 'A', 'IPA', 'IPA', 1),
-(15, 'Yolandani', 'IPS', 'A', 'B', 'B', 'B', 'IPA', 'IPA', 12),
-(16, 'Yulia Putri', 'IPS', 'A', 'B', 'B', 'A', 'IPA', 'IPA', 12),
-(17, 'Yustika', 'IPS', 'B', 'B', 'A', 'B', 'IPA', 'IPA', 8),
-(18, 'Yusuf', 'IPS', 'B', 'B', 'B', 'B', 'IPS', 'IPS', 18),
-(19, 'Zahra', 'IPA', 'B', 'B', 'B', 'B', 'IPS', 'IPS', 17),
-(20, 'Zahra Islamiah', 'IPA', 'B', 'B', 'A', 'B', 'IPA', 'IPA', 8),
-(21, 'Zahra Tusita', 'IPA', 'B', 'B', 'A', 'A', 'IPA', 'IPA', 8),
-(22, 'Zahwa', 'IPA', 'B', 'B', 'A', 'A', 'IPA', 'IPA', 8),
-(23, 'Zaskia', 'IPS', 'A', 'B', 'B', 'B', 'IPA', 'IPA', 12),
-(24, 'Zulkifli', 'IPS', 'A', 'B', 'B', 'B', 'IPA', 'IPA', 12),
-(25, 'Zulpiana', 'IPS', 'B', 'B', 'B', 'B', 'IPS', 'IPS', 18);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_user`
 --
 
@@ -1306,7 +1332,7 @@ CREATE TABLE `tb_user` (
   `password` varchar(256) NOT NULL,
   `nama_lengkap` varchar(30) NOT NULL,
   `img_dir` varchar(256) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_user`
@@ -1323,10 +1349,10 @@ INSERT INTO `tb_user` (`username`, `password`, `nama_lengkap`, `img_dir`) VALUES
 
 CREATE TABLE `t_keputusan` (
   `id` int(11) NOT NULL,
-  `parent` text DEFAULT NULL,
-  `akar` text DEFAULT NULL,
+  `parent` text,
+  `akar` text,
   `keputusan` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_keputusan`
@@ -1368,21 +1394,9 @@ INSERT INTO `t_keputusan` (`id`, `parent`, `akar`, `keputusan`) VALUES
 --
 
 --
--- Indexes for table `data_hasil_klasifikasi`
---
-ALTER TABLE `data_hasil_klasifikasi`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `gain`
 --
 ALTER TABLE `gain`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `rasio_gain`
---
-ALTER TABLE `rasio_gain`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1404,12 +1418,6 @@ ALTER TABLE `tb_training2`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_uji2`
---
-ALTER TABLE `tb_uji2`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
@@ -1426,28 +1434,16 @@ ALTER TABLE `t_keputusan`
 --
 
 --
--- AUTO_INCREMENT for table `data_hasil_klasifikasi`
---
-ALTER TABLE `data_hasil_klasifikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `gain`
 --
 ALTER TABLE `gain`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rasio_gain`
---
-ALTER TABLE `rasio_gain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `tb_klasifikasi`
 --
 ALTER TABLE `tb_klasifikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `tb_training`
@@ -1460,12 +1456,6 @@ ALTER TABLE `tb_training`
 --
 ALTER TABLE `tb_training2`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=526;
-
---
--- AUTO_INCREMENT for table `tb_uji2`
---
-ALTER TABLE `tb_uji2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_keputusan`
