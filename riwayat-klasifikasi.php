@@ -75,7 +75,7 @@ $db_object = new database();
                                             data-bs-target="#viewmodel<?= $row["id"]; ?>">lihat</a>
                                     </td>
                                 </tr>
-                                <div class="modal  fade bd-example-modal-lg" id="viewmodel<?= $row["id"]; ?>"
+                                <div class="modal fade bd-example-modal-lg" id="viewmodel<?= $row["id"]; ?>"
                                     tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
@@ -86,12 +86,12 @@ $db_object = new database();
                                             </div>
                                             <div class="modal-body">
                                                 <br>
-                                                Nama Siswa: <?php echo $row['nama_siswa'] ?><br><br>
-                                                Nama Sekolah: <?php echo $row['nama_sekolah'] ?><br>
+                                                Nama Siswa: <?php echo $row['nama_siswa']; ?><br><br>
+                                                Nama Sekolah: <?php echo $row['nama_sekolah']; ?><br>
                                                 -------------------------------------------
                                                 <br><br>
-                                                Minat: <?php echo $row['minat'] ?><br>
-                                                Nilai Tes: <?php echo $row['nilai_tes'] ?><br>
+                                                Minat: <?php echo $row['minat']; ?><br>
+                                                Nilai Tes: <?php echo $row['nilai_tes']; ?><br>
                                                 <table class="mt-4 table table-bordered text-center"
                                                     style="width: auto;">
                                                     <thead>
@@ -124,28 +124,28 @@ $db_object = new database();
                                                     <tbody>
                                                         <tr>
                                                             <!-- Tabel MTK -->
-                                                            <td><?php echo $row['mtk_1'] ?></td>
-                                                            <td><?php echo $row['mtk_2'] ?></td>
-                                                            <td><?php echo $row['mtk_3'] ?></td>
-                                                            <td><?php echo $row['mtk_4'] ?></td>
-                                                            <td><?php echo $row['mtk_5'] ?></td>
-                                                            <td><?php echo $row['mtk_rata'] ?></td>
+                                                            <td><?php echo $row['mtk_1']; ?></td>
+                                                            <td><?php echo $row['mtk_2']; ?></td>
+                                                            <td><?php echo $row['mtk_3']; ?></td>
+                                                            <td><?php echo $row['mtk_4']; ?></td>
+                                                            <td><?php echo $row['mtk_5']; ?></td>
+                                                            <td><?php echo $row['mtk_rata']; ?></td>
 
                                                             <!-- Tabel IPA -->
-                                                            <td><?php echo $row['ipa_1'] ?></td>
-                                                            <td><?php echo $row['ipa_2'] ?></td>
-                                                            <td><?php echo $row['ipa_3'] ?></td>
-                                                            <td><?php echo $row['ipa_4'] ?></td>
-                                                            <td><?php echo $row['ipa_5'] ?></td>
-                                                            <td><?php echo $row['ipa_rata'] ?></td>
+                                                            <td><?php echo $row['ipa_1']; ?></td>
+                                                            <td><?php echo $row['ipa_2']; ?></td>
+                                                            <td><?php echo $row['ipa_3']; ?></td>
+                                                            <td><?php echo $row['ipa_4']; ?></td>
+                                                            <td><?php echo $row['ipa_5']; ?></td>
+                                                            <td><?php echo $row['ipa_rata']; ?></td>
 
                                                             <!-- Tabel IPS -->
-                                                            <td><?php echo $row['ips_1'] ?></td>
-                                                            <td><?php echo $row['ips_2'] ?></td>
-                                                            <td><?php echo $row['ips_3'] ?></td>
-                                                            <td><?php echo $row['ips_4'] ?></td>
-                                                            <td><?php echo $row['ips_5'] ?></td>
-                                                            <td><?php echo $row['ips_rata'] ?></td>
+                                                            <td><?php echo $row['ips_1']; ?></td>
+                                                            <td><?php echo $row['ips_2']; ?></td>
+                                                            <td><?php echo $row['ips_3']; ?></td>
+                                                            <td><?php echo $row['ips_4']; ?></td>
+                                                            <td><?php echo $row['ips_5']; ?></td>
+                                                            <td><?php echo $row['ips_rata']; ?></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -153,6 +153,7 @@ $db_object = new database();
                                         </div>
                                     </div>
                                 </div>
+
                                 <?php 
                             $no++;
                             }
